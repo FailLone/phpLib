@@ -1,0 +1,9 @@
+{
+  "globalDependencies": {
+    "immutable": "registry:dt/immutable#3.8.1+20160608070634",
+    "jquery": "registry:dt/jquery#1.10.0+20160908203239",
+    "moment": "registry:dt/moment#2.11.1+20160829143156",
+    "react": "registry:dt/react#0.14.0+20160829191040",
+    "redux": "registry:dt/redux#3.5.2+20160703092728"
+  }
+}
