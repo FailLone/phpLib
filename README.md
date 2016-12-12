@@ -1,16 +1,7 @@
 # React Starter Kit
 
-React开发中最好用的脚手架。
+基于脚手架开发。
 
-这个启动包的设计是为了让你使用一整套最新最酷的前端技术，所有都是可配置，富特性，基于webpack已经提供代码热加载，使用sass预处理css，单元测试，代码覆盖率报告，代码分割等等更多。
-
-这个项目最主要的目的是尽可能果断的保留。目的不是要你一定按照这个结构去完成你的项目，谐在使前端开发更健壮，更简单还有最重要的是更快乐。你可以获得以下的所有特性！
-
-最后，如果没有大家的贡献，这个项目是不可能如此健壮的，所以，谢谢大家。
-
-觉得不错的话，请Star一下本项目，这是对作者最大的支持。
-
-所有相关库已准备好，随时等待调用。
 
 ## 特性
 * [react](https://github.com/facebook/react)
@@ -29,18 +20,11 @@ React开发中最好用的脚手架。
 
 ## 开始
 
-确认好你的环境配置，然后就可以开始以下步骤。
-
-```bash
-$ git clone https://github.com/bodyno/react-starter-kit.git
-$ cd react-starter-kit
 $ npm install                   # Install project dependencies
 $ npm start                     # Compile and launch
-```
 
 如果一切顺利，你会看到如下:
 
-<img src="http://i.imgur.com/zR7VRG6.png?2" />
 
 开发过程中，你用得最多的会是`npm start`，但是这里还有很多其它的处理：
 
@@ -114,15 +98,6 @@ Babel被配置[babel-plugin-transform-runtime](https://www.npmjs.com/package/bab
 
 如果你正在使用nginx处理程序，确保所有的路由都直接指向 `~/dist/index.html` 文件，然后让react-router处理剩下的事。如果你不是很确定应该怎么做，[文档在这里](https://github.com/reactjs/react-router/blob/master/docs/guides/Histories.md#configuring-your-server)。Express在脚手架中用于扩展服务和代理API，或者其它你想要做的事，这完全取决于你。
 
-## 谢谢大家
 
-如果没有大家的贡献，这个项目是不可能诞生的， 感谢所有为这个项目做出贡献的人。
-
-This program is inspired by [davezuko](https://github.com/davezuko)
-
-* [Justin Greenberg](https://github.com/justingreenberg) - For all of your PR's, getting us to Babel 6, and constant work improving our patterns.
-* [Roman Pearah](https://github.com/neverfox) - For your bug reports, help in triaging issues, and PR contributions.
-* [Spencer Dixin](https://github.com/SpencerCDixon) - For your creation of [redux-cli](https://github.com/SpencerCDixon/redux-cli).
-* [Jonas Matser](https://github.com/mtsr) - For your help in triaging issues and unending support in our Gitter channel.
 
 Thanks you guys all the time.
