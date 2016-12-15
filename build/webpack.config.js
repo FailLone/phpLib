@@ -117,7 +117,8 @@ webpackConfig.module.loaders.push({
     'style',
     BASE_CSS_LOADER,
     'postcss',
-    'sass?sourceMap'
+    'sass?sourceMap',
+    'less?sourceMap'
   ]
 })
 webpackConfig.module.loaders.push({
@@ -127,6 +128,15 @@ webpackConfig.module.loaders.push({
     'style',
     BASE_CSS_LOADER,
     'postcss'
+  ]
+})
+webpackConfig.module.loaders.push({
+  test: /\.less$/,
+  exclude: null,
+  loaders: [
+    'style',
+    BASE_CSS_LOADER,
+    'less?sourceMap'
   ]
 })
 
@@ -151,6 +161,8 @@ webpackConfig.postcss = [
     sourcemap: true
   })
 ]
+
+
 
 // File loaders
 /* eslint-disable */

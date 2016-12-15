@@ -1,6 +1,6 @@
-import HomeView from './components/HomeView';
+import Neck from './container/Neck';
 
 // Sync route definition
 export default {
-    component: HomeView
+    component: Neck
 };

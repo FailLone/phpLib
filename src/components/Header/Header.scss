@@ -100,81 +100,72 @@
 
 
 
-.header .flexslider .animate {
+@media (min-width: 992px) {
+    .text {
+        margin-left: 8.33333%;
+    }
+}
+@media (min-width: 992px) {
+    .text {
+        width: 83.33333%;
+    }
+}
+@media (min-width: 992px) {
+    .text, .search {
+        float: left;
+    }
+}
+.text, .search {
+    position: relative;
+    padding-left: 15px;
+    padding-right: 15px;
+    text-align: center;
+}
+.header .flexslider .text {
     display: table;
     opacity: 0;
     min-height: 500px;
     z-index: 9;
 }
-@media (min-width: 992px) {
-    .animate {
-        margin-left: 8.33333%;
-    }
-}
-@media (min-width: 992px) {
-    .animate {
-        width: 83.33333%;
-    }
-}
-@media (min-width: 992px) {
-    .animate {
-        float: left;
-    }
-}
-@-webkit-keyframes fadeInUp {
-  from {
-    opacity: 0;
-    -webkit-transform: translate3d(0, 100%, 0);
-    transform: translate3d(0, 100%, 0);
-  }
-
-  to {
-    opacity: 1;
-    -webkit-transform: none;
-    transform: none;
-  }
-}
-@keyframes fadeInUp {
-  from {
-    opacity: 0;
-    -webkit-transform: translate3d(0, 100%, 0);
-    transform: translate3d(0, 100%, 0);
-  }
-
-  to {
-    opacity: 1;
-    -webkit-transform: none;
-    transform: none;
-  }
-}
-.animate {
-    position: relative;
-    padding-left: 15px;
-    padding-right: 15px;
-    text-align: center;
-    -webkit-animation-name: fadeInUp;
-    animation-name: fadeInUp;
-    -webkit-animation-duration: 1s;
-    animation-duration: 1s;
-    -webkit-animation-fill-mode: both;
-    animation-fill-mode: both;
+.header .flexslider .search {
+    display: table;
+    z-index: 9;
+    margin-top: -250px;
+    width: 100%;
+    animation-delay: 0.2s;
 }
 
-
-
-.header .flexslider .animate > .slider-text {
+.header .flexslider .text > .slider-text, .header .flexslider .search > .slider-text {
     display: table-cell;
     vertical-align: middle;
     min-height: 700px;
 }
-.header .flexslider .animate > .slider-text {
+.header .flexslider .text > .slider-text {
     h2 {
         font-size: 60px;
         font-weight: 400;
         color: #fff;
+        user-select: none;
+    }
+}
+.header .flexslider .search > .slider-text {
+    .ant-input {
+        width: 500px;
+        height: 40px;
+        font-size: 20px;
+    }
+    .anticon {
+        font-size: 20px;
+        margin-top: -8px;
     }
 }
 
+
+
+
+.hidden {
+    display: none !important
+}
 
 
 ul {
