@@ -6,6 +6,8 @@ import ZenRoute from './Zen';
 import ElapseRoute from './Elapse';
 import RouteRoute from './Route';
 import PageNotFound from './PageNotFound';
+import Config from './Config';
+import InterfaceManage from './InterfaceManage';
 import Redirect from './PageNotFound/redirect';
 
 /*  Note: Instead of using JSX, we recommend using react-router
@@ -16,6 +18,8 @@ export const createRoutes = (store) => ({
     component: CoreLayout,
     indexRoute: Neck,
     childRoutes: [
+        Config(store),
+        InterfaceManage(store),
         CounterRoute(store),
         ZenRoute(store),
         ElapseRoute(store),

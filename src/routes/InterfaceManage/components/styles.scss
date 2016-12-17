@@ -1,0 +1,74 @@
+.graph-title {
+  color: rgba(0, 0, 0, 0.7);
+  font-weight: 400;
+  margin: 0 0 30px 0;
+  text-align: left;
+  font-family: "Open Sans", Arial, serif;
+  line-height: 1.1;
+  font-size: 25px;
+  user-select: none;
+}
+.graph {
+
+}
+
+.smaller {
+  font-size: 20px;
+  margin-bottom: 2px;
+  margin-right: 2px;
+  cursor: pointer;
+}
+
+.toolbar-search {
+  position: absolute;
+  top: 70px;
+  left: 50px;
+  .ant-input {
+        width: 300px;
+        height: 35px;
+        font-size: 15px;
+    }
+}
+
+@keyframes slideLessLeft {
+  from {
+    width: 100%;
+  }
+
+  to {
+    width: 200px;
+    height: 80px;
+    -webkit-transform: translate3d(0, 0%, 0);
+    transform: translate3d(0, 0%, 0);
+  }
+}
+
+.slideLessLeft {
+  -webkit-animation-name: slideLessLeft;
+  animation-name: slideLessLeft;
+  animation-delay: 0.4s;
+  .ant-card-extra {
+    top: 30px;
+  }
+}
+
+@keyframes slideLessRight {
+  from {
+    width: 200px;
+    height: 80px;
+  }
+
+  to {
+    width: 100%;
+    -webkit-transform: translate3d(0, 0%, 0);
+    transform: translate3d(0, 0%, 0);
+  }
+}
+
+.slideLessRight {
+  -webkit-animation-name: slideLessRight;
+  animation-name: slideLessRight;
+  .ant-card-extra {
+    top: 28px;
+  }
+}

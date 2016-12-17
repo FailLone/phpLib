@@ -1,57 +1,42 @@
 import React, {Component, PropTypes} from 'react';
 import {findDOMNode} from 'react-dom';
+import { Link } from 'react-router';
 import './Header.scss';
-import IBDecorate from 'immutability';
-import { Input } from 'antd';
+import { Menu, Icon } from 'antd';
 
-const Search = Input.Search;
+const SubMenu = Menu.SubMenu;
+const MenuItemGroup = Menu.ItemGroup;
 
-@IBDecorate()
 class Header extends Component {
     constructor(props) {
         super(props);
-        this.handleMouseEnter = () => {
-            this.setState({
-                search: true
-            });
-            findDOMNode(this.input).getElementsByClassName('ant-input')[0].focus();
-            this.initClassName = false;
-        };
-        this.handleBlur = () => {
-            this.setState({
-                search: false
-            });
-        };
-        this.initClassName = 'hidden';
+        this.state = {
+          current: this.getCurrentRoute()
+        }
     }
-    componentDidUpdate() {
-        this.initClassName = 'hidden';
+    getCurrentRoute() {
+      let href = location.href;
+      let arr = href.split('\/');
+      return arr[arr.length - 1];
     }
-    state = {
-        search: false
-    };
+    handleClick(e) {
+      this.setState({
+        current: e.key,
+      });
+    }
     render() {
         return (
-          <aside className='header' style={{height: '1700px'}}>
-            <div className='flexslider'>
-              <ul className='slides'>
-                <li className='img'>
-                  <div className='title'>
-                    <div className={'text animated ' + (this.getState('search') ? 'flipOutX' : 'fadeInUp')}>
-                      <div className='slider-text'>
-                        <h2 onMouseEnter={this.handleMouseEnter}>{'Stay hungry. Stay foolish.'}</h2>
-                      </div>
-                    </div>
-                    <div className={'search animated ' + (this.getState('search') ? 'flipInX' : this.initClassName ? this.initClassName : 'fadeOutUp')}>
-                      <div className='slider-text'>
-                        <Search placeholder='Search' ref={(c) => { this.input = c; }} onBlur={this.handleBlur} />
-                      </div>
-                    </div>
-                  </div>
-                </li>
-              </ul>
-            </div>
-          </aside>
+          <Menu onClick={(e) => this.handleClick(e)}
+            selectedKeys={[this.state.current]}
+            mode="horizontal"
+          >
+            <Menu.Item key="config">
+              <Link to='config'><Icon type="setting" />配置</Link>
+            </Menu.Item>
+            <Menu.Item key="interfaceManage">
+              <Link to='interfaceManage'><Icon type="appstore" />接口调用</Link>
+            </Menu.Item>
+          </Menu>
         );
     }
 }
