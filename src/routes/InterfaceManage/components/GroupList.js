@@ -2,6 +2,7 @@ import React, {Component, PropTypes} from 'react';
 import { Table, Card, Icon } from 'antd';
 import IBDecorate from 'immutability';
 import Dimensions from 'react-dimensions';
+import {map} from 'lodash';
 
 
 const columns = [
@@ -34,7 +35,11 @@ class GroupList extends Component {
         <Table
           size='middle'
           columns={columns}
-          dataSource={this.props.data}
+          dataSource={map(this.props.data, (v, k) => ({
+            name: k,
+            times: v,
+            key: k
+          }))}
           className='table'
           style={{marginTop: '30px'}}
           pagination={false}

@@ -19,7 +19,7 @@ class Config extends Component {
   }
   componentWillReceiveProps(nextProps) {
     if (!isEqual(this.props.config.config, nextProps.config.config)) {
-      this.props.form.setFieldsValue(nextProps.config.config);
+      this.props.form.setFieldsValue(nextProps.config.config[0]);
     }
   }
   render() {
@@ -34,7 +34,7 @@ class Config extends Component {
           {...formItemLayout}
           label='服务名称'
         >
-          {getFieldDecorator('connect_timeout_ratio')(
+          {getFieldDecorator('service')(
             <Input />
           )}
         </FormItem>
@@ -45,12 +45,12 @@ class Config extends Component {
         >
           <Row gutter={8}>
             <Col span={12}>
-              {getFieldDecorator('captcha1')(
+              {getFieldDecorator('connect_timeout')(
                 <Input addonBefore='延时' size='large' />
               )}
             </Col>
             <Col span={12}>
-              {getFieldDecorator('captcha2')(
+              {getFieldDecorator('connect_timeout_ratio')(
                 <Input addonBefore='占比' addonAfter={'%'} size='large' />
               )}
             </Col>
@@ -63,12 +63,12 @@ class Config extends Component {
         >
           <Row gutter={8}>
             <Col span={12}>
-              {getFieldDecorator('captcha3')(
+              {getFieldDecorator('read_timeout')(
                 <Input addonBefore='延时' size='large' />
               )}
             </Col>
             <Col span={12}>
-              {getFieldDecorator('captcha4')(
+              {getFieldDecorator('read_timeout_ratio')(
                 <Input addonBefore='占比' addonAfter={'%'} size='large' />
               )}
             </Col>

@@ -23,15 +23,16 @@ export function getAbnormal(value) {
 }
 
 export const actions = {
-  getAbnormal
+  getAbnormal,
+  getNormal
 };
 
 export const fetchGetNormal = () => (dispatch, getState) => {
-  return fetch('http://10.194.217.43:8067/data.php?normal').then(data => data.json()).then(text => dispatch(getNormal(text.data)));
+  return fetch('/data.php?normal').then(data => data.json()).then(text => dispatch(getNormal(text)));
 };
 
 export const fetchGetAbnormal = () => (dispatch, getState) => {
-  return fetch('http://10.194.217.43:8067/data.php?abnormal').then(data => data.json()).then(text => dispatch(getAbnormal(text.data)));
+  return fetch('/data.php?abnormal').then(data => data.json()).then(text => dispatch(getAbnormal(text)));
 };
 
 // ------------------------------------
@@ -39,10 +40,10 @@ export const fetchGetAbnormal = () => (dispatch, getState) => {
 // ------------------------------------
 const ACTION_HANDLERS = {
   [GET_NORMAL]: (state, action) => {
-    return {...state, normal: action.payload};
+    return {...state, data: action.payload};
   },
   [GET_ABNORMAL]: (state, action) => {
-    return {...state, abnormal: action.payload};
+    return {...state, data: action.payload};
   }
 };
 
@@ -50,8 +51,7 @@ const ACTION_HANDLERS = {
 // Reducer
 // ------------------------------------
 const initialState = {
-  normal: {},
-  abnormal: {}
+  data: []
 };
 export default function elapseReducer(state = initialState, action) {
   const handler = ACTION_HANDLERS[action.type];

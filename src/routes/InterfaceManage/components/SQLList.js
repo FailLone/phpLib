@@ -6,7 +6,7 @@ import { flattenDeep } from 'lodash';
 
 
 const columns = [
-  { title: 'Group', dataIndex: 'name', key: 'name' },
+  { title: 'Group', dataIndex: 'name', key: 'name', width: 100 },
   { title: 'Sql', dataIndex: 'Sql', key: 'Sql' }
 ];
 
@@ -26,7 +26,8 @@ class GroupList extends Component {
           ret = item.map(
             (v, k) => ({
               name: k === 0 ? 'Group' + (index + 1) : '',
-              Sql: v
+              Sql: v,
+              key: index + '' + k
             })
           );
           return ret;

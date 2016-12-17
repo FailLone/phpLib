@@ -9,7 +9,7 @@ const mapDispatchtoProps = {
 };
 
 const mapStateToProps = (state) => ({
-  interfaceManage: state.interfaceManage
+  data: state.interfaceManage.data
 });
 
 export default connect(mapStateToProps, mapDispatchtoProps)(InterfaceManage);
