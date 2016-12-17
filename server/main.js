@@ -3,9 +3,29 @@ const debug = require('debug')('app:server')
 const webpack = require('webpack')
 const webpackConfig = require('../build/webpack.config')
 const config = require('../config')
+const proxyconfig = require('../config/proxy.conf')
+const proxy = require('express-http-proxy')
 
 const app = express()
 const paths = config.utils_paths
+const _host = process.argv[2]
+
+//代理装饰
+function decorateProxy(){
+	return {
+		forwardPath: function(req, res) {
+			const url = require('url').parse(req.url).path
+
+			console.log("HTTP代理请求URL: " + url)
+
+			return require('url').parse(req.url).path
+		},
+		decorateRequest: function(req){
+			// req.Cookie = proxyconfig.cookie
+			return req
+		}
+	}
+}
 
 // This rewrites all routes requests to the root /index.html file
 // (ignoring file requests). If you want to implement universal
@@ -35,6 +55,8 @@ if (config.env === 'development') {
   // of development since this directory will be copied into ~/dist
   // when the application is compiled.
   app.use(express.static(paths.client('static')))
+  app.all( proxyconfig.server.from, proxy( proxyconfig.host[_host], decorateProxy() ))
+
 } else {
   debug(
     'Server is being run outside of live development mode, meaning it will ' +
