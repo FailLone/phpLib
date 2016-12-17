@@ -17,11 +17,11 @@ export function get(value) {
 }
 
 export const fetchGetConfig = () => (dispatch, getState) => {
-  return fetch('http://10.194.217.43:8067/getconfig.php').then(data => data.json()).then(text => dispatch(get(text.data)));
+  return fetch('/getconfig.php').then(data => data.json()).then(text => dispatch(get(text.data)));
 };
 
 export const fetchSetConfig = (value) => (dispatch, getState) => {
-  return fetch('http://10.194.217.43:8067/setconfig.php', {
+  return fetch('/setconfig.php', {
     method: 'POST',
     headers: {
       'Content-Type': 'application/x-www-form-urlencoded'
