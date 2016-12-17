@@ -56,46 +56,46 @@ class Graph extends Component {
       })));
       let categories_S = [
         {
-            name: '辅助',
-            type: 'bar',
-            stack: '总量',
-            itemStyle: {
-                normal: {
-                    barBorderColor: 'rgba(0,0,0,0)',
-                    color: 'rgba(0,0,0,0)'
+          name: '辅助',
+          type: 'bar',
+          stack: '总量',
+          itemStyle: {
+              normal: {
+                  barBorderColor: 'rgba(0,0,0,0)',
+                  color: 'rgba(0,0,0,0)'
                 },
-                emphasis: {
-                    barBorderColor: 'rgba(0,0,0,0)',
-                    color: 'rgba(0,0,0,0)'
+              emphasis: {
+                  barBorderColor: 'rgba(0,0,0,0)',
+                  color: 'rgba(0,0,0,0)'
                 }
             },
-            data: [0, 900, 1245, 1530, 1376, 1376, 1511, 1689, 1856, 1495, 1292]
+          data: [0, 900, 1245, 1530, 1376, 1376, 1511, 1689, 1856, 1495, 1292]
         },
         {
-            name: '收入',
-            type: 'bar',
-            stack: '总量',
-            label: {
-                normal: {
-                    show: true,
-                    position: 'top'
+          name: '收入',
+          type: 'bar',
+          stack: '总量',
+          label: {
+              normal: {
+                  show: true,
+                  position: 'top'
                 }
             },
-            data: [900, 345, 393, '-', '-', 135, 178, 286, '-', '-', '-']
+          data: [900, 345, 393, '-', '-', 135, 178, 286, '-', '-', '-']
         },
         {
-            name: '支出',
-            type: 'bar',
-            stack: '总量',
-            label: {
-                normal: {
-                    show: true,
-                    position: 'bottom'
+          name: '支出',
+          type: 'bar',
+          stack: '总量',
+          label: {
+              normal: {
+                  show: true,
+                  position: 'bottom'
                 }
             },
-            data: ['-', '-', '-', 108, 154, '-', '-', '-', 119, 361, 203]
+          data: ['-', '-', '-', 108, 154, '-', '-', '-', 119, 361, 203]
         }
-    ];
+      ];
       let categories_L = uniqBy(flattenDeep(map(data, (value) => {
         return map(value.group, (v, k) => ({
           name: k,
@@ -117,24 +117,24 @@ class Graph extends Component {
         series: categories_S,
         color: ['#4f19c7', '#c71969', '#c71919', '#1984c7', '#c76919', '#8419c7', '#c79f19', '#c78419', '#c719b9', '#199fc7', '#9f19c7', '#69c719', '#19c719', '#1919c7', '#c74f19', '#19c7b9', '#9fc719', '#c7b919', '#b9c719', '#3419c7', '#19b9c7', '#34c719', '#19c784', '#c7199f', '#1969c7', '#c71984', '#1934c7', '#84c719', '#194fc7', '#c7194f', '#19c74f', '#b919c7', '#19c769', '#19c79f', '#4fc719', '#c73419', '#19c734', '#6919c7', '#c71934'],
         grid: {
-            left: '3%',
-            right: '4%',
-            bottom: '3%',
-            containLabel: true
+          left: '3%',
+          right: '4%',
+          bottom: '3%',
+          containLabel: true
         },
         yAxis: {
-            type : 'category',
-            splitLine: {show:false},
-            data :  function (){
+          type: 'category',
+          splitLine: {show: false},
+          data: (function (){
                 var list = [];
                 for (var i = 1; i <= 11; i++) {
                     list.push('11月' + i + '日');
                 }
                 return list;
-            }()
+            })()
         },
         xAxis: {
-            type : 'value'
+          type: 'value'
         }
       };
     };
@@ -178,7 +178,7 @@ class Graph extends Component {
       <LazyLoad offsetTop={0} throttle={100} onContentVisible={this.initGraph} debounce={false}>
         <Card
           bordered={false}
-          style={{ height: this.getState('fold') ? '900px' : '80px' }}
+          style={{ height: this.getState('fold') ? '400px' : '80px' }}
           extra={<Icon onClick={this.handleClick} type={this.getState('fold') ? 'folder-open' : 'folder'} className='smaller' />}
           className={'animated ' + (this.getState('fold') ? 'slideLessRight' : 'slideLessLeft')}
         >

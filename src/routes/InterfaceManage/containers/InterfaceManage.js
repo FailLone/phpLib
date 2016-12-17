@@ -1,14 +1,15 @@
-import { connect } from 'react-redux'
-import { plus } from './../modules/interfaceManage'
+import { connect } from 'react-redux';
+import { fetchGetNormal, fetchGetAbnormal } from './../modules/interfaceManage';
 
-import InterfaceManage from './../components/InterfaceManage.js'
+import InterfaceManage from './../components/InterfaceManage.js';
 
 const mapDispatchtoProps = {
-  plus
-}
+  fetchGetNormal,
+  fetchGetAbnormal
+};
 
 const mapStateToProps = (state) => ({
-  config: state.config
-})
+  interfaceManage: state.interfaceManage
+});
 
-export default connect(mapStateToProps, mapDispatchtoProps)(InterfaceManage)
+export default connect(mapStateToProps, mapDispatchtoProps)(InterfaceManage);
