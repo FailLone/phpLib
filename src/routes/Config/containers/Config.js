@@ -1,14 +1,15 @@
-import { connect } from 'react-redux'
-import { plus } from './../modules/config'
+import { connect } from 'react-redux';
+import { fetchGetConfig, fetchSetConfig } from './../modules/config';
 
-import Config from './../components/Config.js'
+import Config from './../components/Config.js';
 
 const mapDispatchtoProps = {
-  plus
-}
+  fetchGetConfig,
+  fetchSetConfig
+};
 
 const mapStateToProps = (state) => ({
   config: state.config
-})
+});
 
-export default connect(mapStateToProps, mapDispatchtoProps)(Config)
+export default connect(mapStateToProps, mapDispatchtoProps)(Config);

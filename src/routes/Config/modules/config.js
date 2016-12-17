@@ -1,37 +1,61 @@
+import {map} from 'lodash';
+import {message} from 'antd';
 // ------------------------------------
 // Constants
 // ------------------------------------
-export const PLUS = 'PLUS'
+export const GET_CONFIG = 'GET_CONFIG';
 
 // ------------------------------------
 // Actions
 // ------------------------------------
 
-export function plus () {
+export function get(value) {
   return {
-    type: PLUS
-  }
+    type: GET_CONFIG,
+    payload: value
+  };
 }
 
+export const fetchGetConfig = () => (dispatch, getState) => {
+  return fetch('http://10.194.217.43:8067/getconfig.php').then(data => data.json()).then(text => dispatch(get(text.data)));
+};
+
+export const fetchSetConfig = (value) => (dispatch, getState) => {
+  return fetch('http://10.194.217.43:8067/setconfig.php', {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/x-www-form-urlencoded'
+    },
+    body: map(value, (v, k) => k + '=' + (v || '')).join('&')
+  }).then((res) => {
+    if (res.ok && res.status === 200 && res.json().errmsg === 'success') {
+      message.success('配置成功！');
+      fetchGetConfig();
+    }
+  });
+};
+
 export const actions = {
-  plus
-}
+  get
+};
 
 // ------------------------------------
 // Action Handlers
 // ------------------------------------
 const ACTION_HANDLERS = {
-  [PLUS]: (state) => {
-    return state + 1
+  [GET_CONFIG]: (state, action) => {
+    return {...state, config: action.payload};
   }
-}
+};
 
 // ------------------------------------
 // Reducer
 // ------------------------------------
-const initialState = 0
-export default function elapseReducer (state = initialState, action) {
-  const handler = ACTION_HANDLERS[action.type]
+const initialState = {
+  config: {}
+};
+export default function elapseReducer(state = initialState, action) {
+  const handler = ACTION_HANDLERS[action.type];
 
-  return handler ? handler(state, action) : state
+  return handler ? handler(state, action) : state;
 }
