@@ -8,9 +8,6 @@
   font-size: 15px;
   user-select: none;
 }
-.graph {
-
-}
 
 .smaller {
   font-size: 20px;
@@ -22,12 +19,7 @@
 .toolbar-search {
   position: absolute;
   top: 70px;
-  left: 50px;
-  .ant-input {
-        width: 300px;
-        height: 35px;
-        font-size: 15px;
-    }
+  left: 50px; 
 }
 
 @keyframes slideLessLeft {

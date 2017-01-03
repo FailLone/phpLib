@@ -14,18 +14,18 @@ import Redirect from './PageNotFound/redirect';
     PlainRoute objects to build route definitions.   */
 
 export const createRoutes = (store) => ({
-    path: '/',
-    component: CoreLayout,
-    indexRoute: Neck,
-    childRoutes: [
-        Config(store),
-        InterfaceManage(store),
-        CounterRoute(store),
-        ZenRoute(store),
-        ElapseRoute(store),
-        RouteRoute(store),
-        PageNotFound(),
-        Redirect
+  path: '/',
+  component: CoreLayout,
+  indexRoute: Neck(store),
+  childRoutes: [
+      Config(store),
+      InterfaceManage(store),
+      CounterRoute(store),
+      ZenRoute(store),
+      ElapseRoute(store),
+      RouteRoute(store),
+      PageNotFound(),
+      Redirect
     ]
 });
 

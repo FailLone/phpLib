@@ -9,7 +9,13 @@ const proxy = require('express-http-proxy')
 const app = express()
 const paths = config.utils_paths
 const _host = process.argv[2]
-
+console.log(_host,"hostC");
+app.get( '/hello', function(req,res){
+      console.log("heheh");
+      res.json({
+        hello:"xxxx"
+      });
+  });
 //代理装饰
 function decorateProxy(){
 	return {
@@ -27,6 +33,8 @@ function decorateProxy(){
 	}
 }
 
+app.all( '/apilog/*', proxy( proxyconfig.host[_host], decorateProxy() ))
+
 // This rewrites all routes requests to the root /index.html file
 // (ignoring file requests). If you want to implement universal
 // rendering, you'll want to remove this middleware.
@@ -37,7 +45,7 @@ app.use(require('connect-history-api-fallback')())
 // ------------------------------------
 if (config.env === 'development') {
   const compiler = webpack(webpackConfig)
-
+console.log("debug");
   debug('Enable webpack dev and HMR middleware')
   app.use(require('webpack-dev-middleware')(compiler, {
     publicPath  : webpackConfig.output.publicPath,
@@ -55,7 +63,14 @@ if (config.env === 'development') {
   // of development since this directory will be copied into ~/dist
   // when the application is compiled.
   app.use(express.static(paths.client('static')))
-  app.all( proxyconfig.server.from, proxy( proxyconfig.host[_host], decorateProxy() ))
+  // app.all( proxyconfig.server.from, proxy( proxyconfig.host[_host], decorateProxy() ))
+  // app.get( '/hello', function(req,res){
+  //     console.log("heheh");
+  //     res.json({
+  //       hello:"xxxx"
+  //     });
+  // });
+  //  app.all( 'apilog/getconditiondata', proxy( proxyconfig.host[_host], decorateProxy() ))
 
 } else {
   debug(

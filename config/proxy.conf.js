@@ -1,17 +1,16 @@
 var path = require('path');
 
 module.exports = {
-    host: {
-        gogo: 'http://10.194.217.43:8067',
-    },
+  host: {
+    gogo: 'http://gzhxy-waimai-dcloud19.gzhxy.iwm.name:8298'
+  },
 
-    server: {
-        from: '*.php',
-        mime: 'application/json'
-    },
+  server: {
+   from: '/apilog/*'
+  },
 
-    static: {
-        from: '/static/*'
-    }
+  static: {
+    from: '/static/*'
+  }
 
-}
+};

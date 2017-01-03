@@ -5,7 +5,6 @@ import '../../styles/core.less';
 
 export const CoreLayout = ({ children }) => (
   <div className='container text-center'>
-    <Header />
     {React.Children.toArray(children).map(
         (item, index) => (<div key={index} className='core-layout__viewport'>{item}</div>)
       )}
@@ -13,7 +12,7 @@ export const CoreLayout = ({ children }) => (
 );
 
 CoreLayout.propTypes = {
-    children: React.PropTypes.element.isRequired
+  children: React.PropTypes.element.isRequired
 };
 
 export default CoreLayout;
