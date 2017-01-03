@@ -1,6 +1,6 @@
 import React, { Component, PropTypes } from 'react';
 import './styles.scss';
-import { Card, Icon, Spin } from 'antd';
+import { Card, Icon, Spin, Modal, Row, Col } from 'antd';
 import Dimensions from 'react-dimensions';
 import IBDecorate from 'immutability';
 import { findDOMNode } from 'react-dom';
@@ -40,20 +40,17 @@ class Graph extends Component {
       //   ret[i.name] = map(data, (item) => item.ral_log.group[i.name] || 0);
       // }
       let values = {};
-      let valueMapping = [];
       let index = 0;
+      let initialStartTime = 0;
       values.empty = map(data, (value, key) => {
         let ret = new Array(size(data));
         ret[index] = value.cost;
-        valueMapping[index] = {
-          method: value.method,
-          prot: value.prot,
-          remote_ip: value.remote_ip,
-          cost: value.cost
-        };
+        if (index === 0) {
+          initialStartTime = value.req_start_time;
+        }
         values[key] = ret;
         index++;
-        return key;
+        return (value.req_start_time - initialStartTime) * 1000;
       });
       let categories_S = [];
       categories_S = map(data, (value, key) => ({
@@ -87,15 +84,7 @@ class Graph extends Component {
       });
       return {
         tooltip: {
-          extraCssText: 'width: 300px',
-          formatter: (params) => {
-            let ret = '';
-            if (params.seriesIndex !== 0) {
-              ret = 'service : ' + params.name;
-              map(valueMapping[params.seriesIndex - 1], (item, key) => ret += '<br />' + key + ' : ' + item);
-            }
-            return ret;
-          }
+          show: false
         },
         // legend: {
         //   data: categories_L,
@@ -121,7 +110,8 @@ class Graph extends Component {
           data: map(data, value => value.service),
           axisLine: {
             show: false
-          }
+          },
+          inverse: true
         },
         xAxis: {
           type: 'value'
@@ -133,10 +123,25 @@ class Graph extends Component {
         this.myGraph = echarts.init(findDOMNode(this.graph));
         this.myGraph.setOption(this.initOption(this.props.data));
         this.myGraph.resize({width: this.props.containerWidth * 0.95});
-        // this.myGraph.on('click', () => {
-        //   let newOption = this.initOption(this.props.data);
-        //   this.myGraph.setOption(newOption);
-        // });
+        this.myGraph.on('click', (e) => {
+          console.log(e);
+          let valueMapping = [];
+          if (e.componentSubType === 'bar') {
+            let index = 0;
+            map(this.props.data, value => {
+              valueMapping[index] = value;
+              index++;
+            });
+            Modal.info({
+              title: 'Detail',
+              content: (<div>{map(valueMapping[e.seriesIndex],
+                (v, inx) => <Row key={inx} type='flex' align='center' justify='middle'><Col span={8}><b>{inx + ':'}</b></Col><Col span={16}>{v}</Col></Row>
+              )}</div>),
+              width: 800,
+              onOk() {}
+            });
+          }
+        });
       }
     };
   }

@@ -6,20 +6,16 @@ import TimingChart from './TimingChart';
 import IBDecorate from 'immutability';
 import GroupList from './GroupList';
 import SQLList from './SQLList';
-import { findDOMNode } from 'react-dom';
-import lazyCache from 'react-lazy-cache';
-import { map, keys, findIndex, flattenDeep, uniqBy, size } from 'lodash';
 import LazyLoad from 'react-lazy-load';
 
 const columns = [
   {title: 'ApiPath', dataIndex: 'api_path', key: 'api_path', className: 'column'},
-  {title: 'Count', dataIndex: 'count', key: 'count', className: 'column'},
-  {title: 'RequestTimeSum', dataIndex: 'request_time_sum', key: 'request_time_sum', className: 'column'},
-  {title: 'RequestTimeAvg', dataIndex: 'request_time_avg', key: 'request_time_avg', className: 'column'},
-  {title: 'QPSMax', dataIndex: 'qps_max', key: 'qps_max', className: 'column'},
-  {title: 'QPSAvg', dataIndex: 'qps_avg', key: 'qps_avg', className: 'column'},
-  {title: 'RalCountMax', dataIndex: 'ral_count_max', key: 'ral_count_max', className: 'column'},
-  {title: 'RalCountAvg', dataIndex: 'ral_count_avg', key: 'ral_count_avg', className: 'column'}
+  {title: 'Count', dataIndex: 'count', key: 'count', className: 'column', sorter: (a, b) => a.count - b.count},
+  {title: 'RequestTimeAvg', dataIndex: 'request_time_avg', key: 'request_time_avg', className: 'column', sorter: (a, b) => a.request_time_avg - b.request_time_avg},
+  {title: 'QPSMax', dataIndex: 'qps_max', key: 'qps_max', className: 'column', sorter: (a, b) => a.qps_max - b.qps_max},
+  {title: 'QPSAvg', dataIndex: 'qps_avg', key: 'qps_avg', className: 'column', sorter: (a, b) => a.qps_avg - b.qps_avg},
+  {title: 'RalCountMax', dataIndex: 'ral_count_max', key: 'ral_count_max', className: 'column', sorter: (a, b) => a.ral_count_max - b.ral_count_max},
+  {title: 'RalCountAvg', dataIndex: 'ral_count_avg', key: 'ral_count_avg', className: 'column', sorter: (a, b) => a.ral_count_avg - b.ral_count_avg}
 ];
 @IBDecorate
 class Graph extends Component {

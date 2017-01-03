@@ -1,5 +1,5 @@
 import React, {Component, PropTypes} from 'react';
-import Toolbar from '../components/Toolbar';
+import Toolbar from '../components/ToolBar';
 import Chart from '../components/Chart';
 import {mapValues} from 'lodash';
 import lazyCache from 'react-lazy-cache';
