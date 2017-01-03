@@ -71,6 +71,7 @@ class Graph extends Component {
               pagination={false}
               expandedRowRender={(e) =>
                 <div>
+                  <span><b style={{marginLeft: '15px'}}>{'logid : '}</b><b style={{color: '#EEAD0E'}}>{this.props.time[e.id] && this.props.time[e.id].data ? this.props.time[e.id].data.logid : null}</b></span>
                   <TimingChart data={this.props.time[e.id] && this.props.time[e.id].data && this.props.time[e.id].data.raw_chain ? this.props.time[e.id].data.raw_chain : null} loading={this.props.timeLoading} />
                   <GroupList data={this.props.time[e.id] && this.props.time[e.id].data && this.props.time[e.id].data.chain_group ? this.props.time[e.id].data.chain_group : null} />
                   <SQLList data={this.props.time[e.id] && this.props.time[e.id].data && this.props.time[e.id].data.sql_group ? this.props.time[e.id].data.sql_group : null} />

@@ -1,6 +1,6 @@
 import React, { Component, PropTypes } from 'react';
 import './styles.scss';
-import { Card, Icon, Spin, Modal, Row, Col } from 'antd';
+import { Card, Icon, Spin, Modal, Table } from 'antd';
 import Dimensions from 'react-dimensions';
 import IBDecorate from 'immutability';
 import { findDOMNode } from 'react-dom';
@@ -124,7 +124,6 @@ class Graph extends Component {
         this.myGraph.setOption(this.initOption(this.props.data));
         this.myGraph.resize({width: this.props.containerWidth * 0.95});
         this.myGraph.on('click', (e) => {
-          console.log(e);
           let valueMapping = [];
           if (e.componentSubType === 'bar') {
             let index = 0;
@@ -134,9 +133,21 @@ class Graph extends Component {
             });
             Modal.info({
               title: 'Detail',
-              content: (<div>{map(valueMapping[e.seriesIndex],
-                (v, inx) => <Row key={inx} type='flex' align='center' justify='middle'><Col span={8}><b>{inx + ':'}</b></Col><Col span={16}>{v}</Col></Row>
-              )}</div>),
+              content: (<Table
+                size='middle'
+                showHeader={false}
+                columns={[
+                  { title: 'Name', dataIndex: 'name', key: 'name', width: 200 },
+                  { title: 'Count', dataIndex: 'count', key: 'count' }
+                ]}
+                dataSource={map(valueMapping[e.seriesIndex], (value, key) => ({
+                  name: key,
+                  count: value
+                }))}
+                className='table'
+                style={{marginTop: '30px'}}
+                pagination={false}
+                        />),
               width: 800,
               onOk() {}
             });
@@ -168,6 +179,7 @@ class Graph extends Component {
     //     });
     // }
   render() {
+    console.log(this.props.data);
     return (
       <LazyLoad offsetTop={0} throttle={100} onContentVisible={this.initGraph} debounce={false}>
         <Card
